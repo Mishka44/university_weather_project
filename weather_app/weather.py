@@ -59,12 +59,18 @@ def get_location_key_by_coors(coordinates, apikey, language="ru-RU"):
         'q': ','.join(list(map(str, list(coordinates)))),
         'lanquage': language
     }
-    responce = requests.get(url, params=data)
-    if responce.status_code == 200:
+
+    try:
+        responce = requests.get(url, params=data)
         data = responce.json()
         return data["Key"]
-    else:
-        return responce.status_code
+    except KeyError:
+        raise KeyError('Возможно, допущена ошибка при введении координат или произошла'
+                       ' ошибка на стороне API AccuWeather, проверьте лимит запросов')
+    except TypeError:
+        raise TypeError('Скорее всего произошла ошибка на стороне API AccuWeather, проверьте лимит запросов')
+    except IndexError:
+        raise IndexError('Скорее всего произошла ошибка на стороне API AccuWeather, проверьте лимит запросов')
 
 
 def check_bad_weather(data_conditions):

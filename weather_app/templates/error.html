@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles_additional.css') }}">
     <title>Ошибка!</title>
     <style>
         body {
@@ -50,7 +49,7 @@
 
         <p>Проверьте правильность города, который вы ввели. Если и это не помогло, вероятно, на нашей стороне ошибка. Попробуйте позднее!</p>
 
-        <h3>Подробнее:</h3>
+        <h3>Подробнее, номер ошибки:</h3>
         <p>{{ error }}</p>
 
         <a href="/">Назад на главную</a>

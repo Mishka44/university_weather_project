@@ -5,8 +5,7 @@ app = Flask(__name__)
 
 api_key = "E2D2L0W3qMB9buETGgbVPGNrPAPXx6Yv"
 
-# UPLOAD_FOLDER = 'tips'
-# app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -24,7 +23,6 @@ def menu():
         try:
             start_city_code = weather.get_location_key_by_coors(coordinates_start, api_key)
             end_city_code = weather.get_location_key_by_coors(coordinates_end, api_key)
-
         except Exception as e:
             return render_template("error.html", error=e)
 
@@ -44,6 +42,8 @@ def menu():
 @app.route("/result")
 def result():
     return render_template("result.html")
+
+
 
 
 if __name__ == '__main__':
