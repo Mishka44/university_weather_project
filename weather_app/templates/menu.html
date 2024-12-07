@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Проверка погодных условий</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+        }
+        input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Погода по маршруту</h1>
+        <form action="/" method="POST">
+            <h2>Начальная точка</h2>
+            <label for="start_lat">Широта:</label>
+            <input type="text" id="start_lat" name="start_lat" placeholder="Введите широту" required>
+
+            <label for="start_lon">Долгота:</label>
+            <input type="text" id="start_lon" name="start_lon" placeholder="Введите долготу" required>
+
+            <h2>Конечная точка</h2>
+            <label for="end_lat">Широта:</label>
+            <input type="text" id="end_lat" name="end_lat" placeholder="Введите широту" required>
+
+            <label for="end_lon">Долгота:</label>
+            <input type="text" id="end_lon" name="end_lon" placeholder="Введите долготу" required>
+
+            <button type="submit">Проверить погоду</button>
+        </form>
+    </div>
+</body>
+</html>

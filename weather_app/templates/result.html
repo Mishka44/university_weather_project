@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles_additional.css') }}">
+    <title>Результаты проверки погоды</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            text-align: center;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+        h1 {
+            color: #333;
+        }
+        h2 {
+            color: #2980b9; /* Цвет для заголовков секций */
+        }
+        p {
+            color: #555;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #3498db; /* Цвет кнопки */
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        a:hover {
+            background-color: #2980b9; /* Цвет кнопки при наведении */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Результаты проверки погодных условий</h1>
+
+        <h2>Начальная точка:</h2>
+        <p>{{ start_weather}}</p>
+
+        <h2>Погода в {{ start_city }}:</h2>
+        <p>{{ start_weather_list }}</p>
+
+        <h2>Конечная точка:</h2>
+        <p>{{ end_weather }}</p>
+
+        <h2>Погода в {{ end_city }}:</h2>
+        <p>{{ end_weather_list }}</p>
+
+        <a href="/">Назад к форме</a>
+    </div>
+</body>
+</html>

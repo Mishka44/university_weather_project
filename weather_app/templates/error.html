@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles_additional.css') }}">
+    <title>Ошибка!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+        h1 {
+            color: #e74c3c; /* Цвет для заголовка ошибки */
+        }
+        p {
+            color: #555;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #3498db; /* Цвет кнопки */
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        a:hover {
+            background-color: #2980b9; /* Цвет кнопки при наведении */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>К сожалению, произошла ошибка :(</h1>
+
+        <p>Проверьте правильность города, который вы ввели. Если и это не помогло, вероятно, на нашей стороне ошибка. Попробуйте позднее!</p>
+
+        <h3>Подробнее:</h3>
+        <p>{{ error }}</p>
+
+        <a href="/">Назад на главную</a>
+    </div>
+</body>
+</html>
