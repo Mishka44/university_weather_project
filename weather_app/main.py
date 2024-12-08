@@ -1,11 +1,8 @@
 import weather
 from flask import Flask, request, render_template
+from api_key import API_KEY
 
 app = Flask(__name__)
-
-api_key = "E2D2L0W3qMB9buETGgbVPGNrPAPXx6Yv"
-
-
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -21,13 +18,13 @@ def menu():
 
         coordinates_end = (end_city_lat, end_city_lon)
         try:
-            start_city_code = weather.get_location_key_by_coors(coordinates_start, api_key)
-            end_city_code = weather.get_location_key_by_coors(coordinates_end, api_key)
+            start_city_code = weather.get_location_key_by_coors(coordinates_start, API_KEY)
+            end_city_code = weather.get_location_key_by_coors(coordinates_end, API_KEY)
         except Exception as e:
             return render_template("error.html", error=e)
 
-        start_weather = weather.request(api_key, start_city_code)
-        end_weather = weather.request(api_key, end_city_code)
+        start_weather = weather.request(API_KEY, start_city_code)
+        end_weather = weather.request(API_KEY, end_city_code)
 
         conditions_check_start = weather.check_bad_weather(start_weather)
         conditions_check_end = weather.check_bad_weather(end_weather)
@@ -42,8 +39,6 @@ def menu():
 @app.route("/result")
 def result():
     return render_template("result.html")
-
-
 
 
 if __name__ == '__main__':
