@@ -18,22 +18,6 @@ def menu():
         except Exception as e:
             return render_template("error.html", error=e)
 
-
-        # start_city_lat = request.form.get("start_lat")
-        # start_city_lon = request.form.get("start_lon")
-        #
-        # coordinates_start = (start_city_lat, start_city_lon)
-        #
-        # end_city_lat = request.form.get("end_lat")
-        # end_city_lon = request.form.get("end_lon")
-        #
-        # coordinates_end = (end_city_lat, end_city_lon)
-        # try:
-        #     start_city_code = weather.get_location_key_by_coors(coordinates_start, API_KEY)
-        #     end_city_code = weather.get_location_key_by_coors(coordinates_end, API_KEY)
-        # except Exception as e:
-        #     return render_template("error.html", error=e)
-
         start_weather = weather.request(API_KEY, start_city_code)
         end_weather = weather.request(API_KEY, end_city_code)
 
