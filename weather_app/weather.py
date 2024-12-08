@@ -1,7 +1,6 @@
 import requests
 
 
-
 def request(api_key, location_key):
     language = 'ru-RU'
 
@@ -12,10 +11,10 @@ def request(api_key, location_key):
         'details': 'true'
     }
 
-    responce_current_weather = requests.get(url_cur, params=data)
-    current_responce = responce_current_weather.json()[0]
-    if responce_current_weather.status_code != 200:
-        print("ошибка:", responce_current_weather.status_code)
+    response_current_weather = requests.get(url_cur, params=data)
+    current_response = response_current_weather.json()[0]
+    if response_current_weather.status_code != 200:
+        print("ошибка:", response_current_weather.status_code)
 
     url_forc = f'http://dataservice.accuweather.com/forecasts/v1/hourly/1hour/{location_key}'
     data = {
@@ -24,14 +23,14 @@ def request(api_key, location_key):
         'details': 'true',
         'metric': 'true'
     }
-    responce_forecast_weather = requests.get(url_forc, params=data)
+    response_forecast_weather = requests.get(url_forc, params=data)
 
-    forecast_responce = responce_forecast_weather.json()[0]
+    forecast_response = response_forecast_weather.json()[0]
 
-    if responce_forecast_weather.status_code != 200:
-        print("ошибка:", responce_forecast_weather.status_code)
+    if response_forecast_weather.status_code != 200:
+        print("ошибка:", response_forecast_weather.status_code)
 
-    return get_weather_by_data(current_responce, forecast_responce)
+    return get_weather_by_data(current_response, forecast_response)
 
 
 def get_weather_by_data(data1, data2):
@@ -61,12 +60,35 @@ def get_location_key_by_coors(coordinates, apikey, language="ru-RU"):
     }
 
     try:
-        responce = requests.get(url, params=data)
-        data = responce.json()
+        response = requests.get(url, params=data)
+        data = response.json()
         return data["Key"]
     except KeyError:
         raise KeyError('Возможно, допущена ошибка при введении координат или произошла'
                        ' ошибка на стороне API AccuWeather, проверьте лимит запросов')
+    except TypeError:
+        raise TypeError('Скорее всего произошла ошибка на стороне API AccuWeather, проверьте лимит запросов')
+    except IndexError:
+        raise IndexError('Скорее всего произошла ошибка на стороне API AccuWeather, проверьте лимит запросов')
+
+
+def get_location_key_by_name(api_key, name, lanquage='ru-RU'):
+
+    url = 'http://dataservice.accuweather.com/locations/v1/cities/search'
+    data = {
+        'apikey': api_key,
+        'q': name,
+        'lanquage': lanquage,
+        'alias': 'Always'
+    }
+
+    try:
+        response = requests.get(url, params=data)
+        data = response.json()
+
+        return data[0]['Key']
+    except KeyError:
+        raise KeyError('Такого города нет или произошла ошибка на стороне API AccuWeather, проверьте лимит запросов')
     except TypeError:
         raise TypeError('Скорее всего произошла ошибка на стороне API AccuWeather, проверьте лимит запросов')
     except IndexError:
@@ -92,7 +114,3 @@ def check_bad_weather(data_conditions):
 
 
 
-
-
-
-#print(get_location_key_by_coors((55.768740, 37.588835), api_key))

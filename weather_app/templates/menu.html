@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">
     <title>Проверка погодных условий</title>
     <style>
         body {
@@ -54,21 +55,14 @@
 </head>
 <body>
     <div class="container">
-        <h1>Погода по маршруту</h1>
+        <h1>Введите начальный и конечный города</h1>
+
         <form action="/" method="POST">
-            <h2>Начальная точка</h2>
-            <label for="start_lat">Широта:</label>
-            <input type="text" id="start_lat" name="start_lat" placeholder="Введите широту" required>
+            <label for="start_city">Начальный город:</label>
+            <input type="text" id="start_city" name="start_city" required placeholder="Введите начальный город">
 
-            <label for="start_lon">Долгота:</label>
-            <input type="text" id="start_lon" name="start_lon" placeholder="Введите долготу" required>
-
-            <h2>Конечная точка</h2>
-            <label for="end_lat">Широта:</label>
-            <input type="text" id="end_lat" name="end_lat" placeholder="Введите широту" required>
-
-            <label for="end_lon">Долгота:</label>
-            <input type="text" id="end_lon" name="end_lon" placeholder="Введите долготу" required>
+            <label for="end_city">Конечный город:</label>
+            <input type="text" id="end_city" name="end_city" required placeholder="Введите конечный город">
 
             <button type="submit">Проверить погоду</button>
         </form>
